@@ -1,0 +1,50 @@
+@model List<pr19.Models.StudyTask>
+
+<h2>Планировщик учёбы</h2>
+
+<form method="post" action="/Study/Add">
+
+    <div>
+        <label>Предмет:</label>
+        <input type="text" name="Subject" required />
+    </div>
+
+    <br />
+
+    <div>
+        <label>Дедлайн:</label>
+        <input type="date" name="Deadline" required />
+    </div>
+
+    <br />
+
+    <button type="submit">
+        Добавить задачу
+    </button>
+
+</form>
+
+<hr />
+
+<table border="1" cellpadding="10">
+
+    <tr>
+        <th>Предмет</th>
+        <th>Дедлайн</th>
+        <th>Выполнено</th>
+    </tr>
+
+    @foreach (var task in Model)
+    {
+        <tr>
+            <td>@task.Subject</td>
+
+            <td>@task.Deadline.ToShortDateString()</td>
+
+            <td>
+                @(task.Completed ? "Да" : "Нет")
+            </td>
+        </tr>
+    }
+
+</table>
